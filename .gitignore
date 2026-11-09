@@ -1,0 +1,14 @@
+# CMake out-of-source build directories
+build/
+
+# Binaries built by hand with g++ (cpp/live-NN/)
+cpp/live-*/hello
+cpp/live-*/ops
+cpp/live-*/final
+cpp/live-*/main
+a.out
+
+# Object files and debug info
+*.o
+*.obj
+*.dSYM/
