@@ -9,7 +9,7 @@ Study playground. Today it only holds the code written during the solo C++ study
 ## Layout
 
 ```
-cpp/live-NN/   code written during live NN (one folder per live, created when the live starts)
+lives/cpp/live-NN/   code written during live NN (one folder per live, created when the live starts)
 ```
 
 The live scripts (roteiros) and study notes are not here. They live in `~/dev/brain` (`lives/cpp/` for the scripts, `studies/` for notes) and are saved through the marginalia MCP or the `/marginalia` skill, only when the user asks. This repo is the place for code and its commits.

@@ -26,7 +26,7 @@ Cada live dura cerca de 3 horas, com um intervalo, e termina com um programa exe
 ## Estrutura
 
 ```
-cpp/live-NN/   código da live NN (a pasta é criada quando a live começa)
+lives/cpp/live-NN/   código da live NN (a pasta é criada quando a live começa)
 ```
 
 ## Instalação
@@ -38,7 +38,7 @@ Só é preciso o `g++` com suporte a C++20 (os exemplos foram verificados com g+
 Compile e execute a pasta de uma live:
 
 ```bash
-cd cpp/live-01
+cd lives/cpp/live-01
 g++ -std=c++20 -Wall -Wextra -o main main.cpp && ./main
 ```
 
