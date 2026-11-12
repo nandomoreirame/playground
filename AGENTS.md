@@ -24,6 +24,10 @@ g++ -std=c++20 -Wall -Wextra -o main main.cpp && ./main
 
 Add `-fsanitize=address` when the live is about memory (live 05, `unique_ptr`/RAII). Keep warnings clean: `-Wall` flags `=` inside `if`, signed/unsigned comparisons and similar beginner mistakes that the lives rely on showing.
 
+## Hands off the code
+
+Never create, edit, move or delete any file under `~/dev/playground/` (code, `CMakeLists.txt`, `.gitignore`, build files), even to fix a compile error, a missing `#include` or a typo. The user writes this code by hand, often live on stream, and wants full autonomy over it. When something is broken or unclear, explain what is wrong and how to fix it, with the snippet in chat, and let the user apply it. Reading files, building into a scratch copy outside this tree and running the user's commands stay allowed. This file is the only exception, and only when the user asks to change it.
+
 ## Conventions
 
 - Code, identifiers and comments in English; commit messages in English with an emoji prefix (Conventional Commits).
