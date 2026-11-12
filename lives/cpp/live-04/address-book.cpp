@@ -44,15 +44,15 @@ class AddressBook {
 
 		void list() const {
 			if (contacts_.empty()) {
-				std::cout <<  "A agenda está vazia.\n";
+				std::cout <<  "\nA agenda está vazia.\n";
 				return; // sai da função se a lista for vazia
 			}
 
 			for (const Contact& contact : contacts_) {
 				std::cout << "================================ \n";
-				std::cout << "Nome: " << contact.name() << "\n";
-				std::cout << "Telefone: " << contact.phone() << "\n";
-				std::cout << "================================ \n\n";
+				std::cout << contact.name() << " - "
+						  << contact.phone() << "\n";
+				std::cout << "================================ \n";
 			}
 		}
 
@@ -86,70 +86,71 @@ int main() {
 		print_menu();
 
 		if (!(std::cin >> option)) {
-			std::cout << "====== 1 =====\n\n";
 			if (std::cin.eof()) { // Ctrl+D não há mais o que ler
-			std::cout << "====== 2 =====\n\n";
+				std::cout << "\n=============\n"
+						  << "Até logo!\n"
+						  << "=============\n";
 				break;
 			}
 			std::cin.clear();
 			std::cin.ignore(1000, '\n');
+			std::cout << "\n==============================\n"
+					  << "ERRO: Digite um número válido!\n"
+					  << "==============================\n";
 			option = -1;  // força a opção inválida;
-			// std::cout << "\n" << "Entrada errada. \n";
-			// break;
-		} else {
-			std::cin.ignore(1000, '\n'); // descarta o Enter que sobrou;
+			continue;
 		}
+		
+		std::cin.ignore(1000, '\n'); // descarta o Enter que sobrou;
 
-		// std::cout << "====== 4 =====";
-		// std::cin.ignore(1000, '\n');
-
-		if (option == 1) { // adicionar
-			const std::string name{read_line("Nome: ")};
-			const std::string phone{read_line("Telefone: ")};
-
-			book.add(name, phone);
-
-			std::cout << "\n====================\n"
-					  << "Adicionado.\n"
-					  << "====================\n";
-
-		} else if (option == 2) { // Buscar
-			const std::string name{read_line("Buscar pelo nome: ")};
-			const Contact* found{book.find(name)};
-
-			if (found != nullptr) {
-				std::cout << found->name() << " - "
-						  << found->phone() << "\n\n";
-			} else {
-				std::cout << "Busca por" << name
-						  << " não encontrou nenhum contato.\n\n";
+		switch (option)
+		{
+			case 0:
+				std::cout << "\n=============\n"
+						  << "Até logo!\n"
+						  << "=============\n";
+				break;
+			case 1: {
+				const std::string name{read_line("Nome: ")};
+				const std::string phone{read_line("Telefone: ")};
+	
+				book.add(name, phone);
+	
+				std::cout << "\n====================\n"
+						  << "Adicionado.\n"
+						  << "====================\n";
+				break;
 			}
-		} else if (option == 0) {
-			std::cout << "Até a próxima!\n";
-		} else {
-			std::cout << "Opção inválida. \n";
+			case 2: {
+				const std::string name{read_line("Buscar pelo nome: ")};
+				const Contact* found{book.find(name)};
+	
+				if (found != nullptr) {
+					std::cout << found->name() << " - "
+							  << found->phone() << "\n\n";
+				} else {
+					std::cout << "Busca por" << name
+							  << " não encontrou nenhum contato.\n\n";
+				}
+				break;
+			}
+			case 3: {
+				const std::string name{read_line("Digite o nome: ")};
+				if (book.remove(name)) {
+					std::cout << "Removido.\n";
+				} else {
+					std::cout << "Não encontrado.\n";
+				}
+				break;
+			}
+			case 4:
+				book.list();
+				break;
+			default:
+				std::cout << "Opção inválida. \n";
+				break;
 		}
 	}
-
-//
-// 	book.add("Ana Souza", "1192922-0022");
-// 	book.add("Bruno Lima", "113333-3332");
-// 	book.add("Fernando Moreira", "113233-7777");
-// 	book.list();
-//
-// 	const Contact* found = book.find("Fernando Moreira");
-// 	if (found != nullptr) {
-// 		std::cout << "Contato encontrado: \n"
-// 				  << found->name() << " - "  << found->phone()  << "\n";
-// 	}
-// 	if (book.find("Carlos") == nullptr) {
-// 		std::cout << "Carlos não foi encontrado.  \n";
-// 	}
-//
-// 	std::cout << "Remover Bruno: " <<  book.remove("Bruno Lima") << "\n";
-// 	std::cout << "Remover Ana: " <<  book.remove("Ana Souza") << "\n";
-// 	std::cout << "Remover Bruno de novo: " <<  book.remove("Bruno Lima") << "\n";
-// 	book.list();
 
 	return  0;
 }
